@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/fiori-elements-v4-cap-advanced)](https://api.reuse.software/info/github.com/SAP-samples/fiori-elements-v4-cap-advanced)
 
@@ -112,3 +113,12 @@ For additional support, [ask a question in SAP Community](https://answers.sap.co
 
 ## License
 Copyright (c) 2022 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](LICENSE) file.
+=======
+# ISR-capire-sflight-ktr
+Created based on the Flights application's practices
+>>>>>>> abd7007ff0031ff37ecdd95ba985e3379e6fdc62
+
+
+git add .
+git commit -m ""
+git push
