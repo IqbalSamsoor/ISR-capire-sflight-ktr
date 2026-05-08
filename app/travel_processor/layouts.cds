@@ -580,6 +580,6 @@ annotate TravelService.TravelAgency with @(Communication.Contact #contact: {
 
 annotate TravelService.Travel with {
     Description @UI.MultiLineText: true
-                @UI.Placeholder  : '{i18n>DescrPlcehlder}'
+                @UI.Placeholder  : '{i18n>DescrPlcehlder}' 
 }
 
