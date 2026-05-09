@@ -59,6 +59,7 @@ entity BookingSupplement : managed {
       to_Booking          : Association to Booking;
       to_Travel           : Association to Travel;
       to_Supplement       : Association to Supplement;
+      DeliveryPreference : Association to MealOptionDeliveryPreference;
 };
 
 
@@ -112,3 +113,11 @@ entity SupplementScope {
   DeviationRangeLowValue : Integer @Common.Label: 'Deviation Range Threshold';
   ToleranceRangeLowValue : Integer @Common.Label: 'Tolerance Range Threshold'; 
 }
+
+entity MealOptionDeliveryPreference : CodeList {
+  key code : String enum {
+        SoonAfterTakeoff = 'S';
+        Midflight = 'M';
+        Late = 'L';
+      } default 'M'
+};
