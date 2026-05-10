@@ -2,9 +2,10 @@ sap.ui.define(
 	[
 		"sap/ui/core/mvc/ControllerExtension",
 		"sap/ui/core/message/Message",
-		"sap/ui/core/MessageType"
+		"sap/ui/core/MessageType",
+		"sap/ui/model/json/JSONModel"
 	],
-	function (ControllerExtension, Message, MessageType) {
+	function (ControllerExtension, Message, MessageType, JSONModel) {
 		"use strict";
 
 		return ControllerExtension.extend(
@@ -55,6 +56,17 @@ sap.ui.define(
 										.getResourceBundle()
 										.getText("bookingsAttention")
 								});
+							// const oPassengerBookingsModel = new JSONModel({
+							oPassengerBookingsModel = new JSONModel({
+								totalBookingsCount: 0,
+								newBookingsCount: 0,
+								acceptedBookingsCount: 0,
+								cancelledBookingsCount: 0
+							});
+
+							this.base
+								.getView()
+								.setModel(oPassengerBookingsModel, "passengerBookingsModel");
 
 							// Request OData function with current CustomerID
 							const oCustomer = await oBindingContext.requestObject(
@@ -66,14 +78,37 @@ sap.ui.define(
 							await oFunction.execute();
 
 							const oContext = oFunction.getBoundContext();
+							oPassengerBookingsModel.setProperty(
+								"/totalBookingsCount",
+								oContext.getProperty("TotalBookingsCount")
+							);
+
+							oPassengerBookingsModel.setProperty(
+								"/newBookingsCount",
+								oContext.getProperty("NewBookingsCount")
+							);
+
+							oPassengerBookingsModel.setProperty(
+								"/acceptedBookingsCount",
+								oContext.getProperty("AcceptedBookingsCount")
+							);
+
+							oPassengerBookingsModel.setProperty(
+								"/cancelledBookingsCount",
+								oContext.getProperty("CancelledBookingsCount")
+							);
 
 							if (this.message !== undefined) {
 								oBookingTableAPI.removeMessage(this.message);
 							}
 
-							if (oContext.getProperty("HasNewBookings")) {
-								this.message = oBookingTableAPI.addMessage(oWarningMessage);
+							// if (oContext.getProperty("HasNewBookings")) {
+							// 	this.message = oBookingTableAPI.addMessage(oWarningMessage);
 
+							// 	oExtensionAPI.showMessages([oInfoMessage]);
+							// }
+							if (oContext.getProperty("NewBookingsCount") > 0) {
+								this.message = oBookingTableAPI.addMessage(oWarningMessage);
 								oExtensionAPI.showMessages([oInfoMessage]);
 							}
 						}
