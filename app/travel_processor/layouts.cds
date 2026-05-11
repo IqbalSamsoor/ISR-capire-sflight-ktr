@@ -683,3 +683,17 @@ annotate TravelService.Booking with {
         Common.ValueListWithFixedValues: true,
     )
 };
+
+
+
+annotate TravelService.Travel with {
+    @(Common: {
+        SemanticObject: 'Customer',
+        SemanticObjectMapping: [
+            {
+                LocalProperty : to_Customer_CustomerID,
+                SemanticObjectProperty: 'CustomerID'
+            }
+        ]})
+        to_Customer
+    };
