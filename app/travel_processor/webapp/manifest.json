@@ -1,4 +1,10 @@
 {
+    "libs": {
+  "sap.ui.core": {},
+  "sap.fe.templates": {},
+  "sap.f": {},
+  "sap.ushell": {}
+},
     "_version": "1.32.0",
     "sap.app": {
         "id": "sap.fe.cap.travel",
